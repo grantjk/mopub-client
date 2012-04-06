@@ -259,12 +259,15 @@ NSString * const kAdTypeMraid = @"mraid";
 	urlString = [urlString stringByAppendingString:[self scaleFactorQueryStringComponent]];
 	urlString = [urlString stringByAppendingString:[self timeZoneQueryStringComponent]];
 	urlString = [urlString stringByAppendingString:[self locationQueryStringComponent]];
-	urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"&include=%@", self.adView.include]];  
+	if([self.adView.include length] > 0) {
+		urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"&include=%@", self.adView.include]];
+	}
     
     if (NSClassFromString(@"MPMraidAdapter") != nil) {
         urlString = [urlString stringByAppendingString:@"&mr=1"];
     }
     
+	NSLog(@"%@", urlString);
 	return [NSURL URLWithString:urlString];
 }
 
@@ -971,7 +974,7 @@ NSString * const kAdTypeMraid = @"mraid";
 {
 	_autorefreshTimerNeedsScheduling = NO;
 	if (!_ignoresAutorefresh) {
-        [self forceRefreshAd];
+        //[self forceRefreshAd];
     }
 }
 

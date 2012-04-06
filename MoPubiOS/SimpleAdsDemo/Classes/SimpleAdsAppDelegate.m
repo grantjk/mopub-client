@@ -24,7 +24,7 @@
 	
 	return YES;
 }
-
+//simpleads://?size=300x250&adunitid=agltb3B1Yi1pbmNyDQsSBFNpdGUYs83YEQw
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url 
 {
 	NSArray *formats = [[NSArray alloc] initWithObjects:
@@ -34,13 +34,16 @@
 	NSString *size = @"size";
 	NSString *adid = @"";
 	NSString *include = @"";
+	NSLog(@"reached");
 	for (NSString *query_string in queries) {
+		NSLog(@"%@", query_string);
 		NSArray *query = [query_string componentsSeparatedByString:@"="];
 		NSString *key = [query objectAtIndex:0];
 		NSString *value = [query objectAtIndex:1];
 		if ([key isEqualToString:@"size"]) {
 			size = value;
-		} else if ([key isEqualToString:@"adid"]) {
+		} else if ([key isEqualToString:@"adunitid"]) {
+			NSLog(@"%@",value);
 			adid = value;
 		} else if ([key isEqualToString:@"include"]) {
 			include = value;

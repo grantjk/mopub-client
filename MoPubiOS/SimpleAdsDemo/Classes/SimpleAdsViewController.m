@@ -50,18 +50,29 @@
 }
 
 - (void)loadCustom:(NSNotification *)notification {
+	NSLog(@"loadcustom");
 	NSArray *info = [[NSArray alloc] initWithArray:[notification object]];
 	if ([[info objectAtIndex:2] isEqualToString:@"320x50"]) {
-		self.mpAdView = [[MPAdView alloc] initWithAdUnitId:[info objectAtIndex:0]
+		[mpAdView removeFromSuperview];
+		[mpAdView release];
+		mpAdView = nil;
+		mpAdView = [[MPAdView alloc] initWithAdUnitId:[info objectAtIndex:0]
 													  size:MOPUB_BANNER_SIZE];
-		self.mpAdView.include = [info objectAtIndex:1];
-		self.mpAdView.delegate = self;
-		[self.mpAdView loadAd];
+		mpAdView.include = [info objectAtIndex:1];
+		mpAdView.delegate = self;
+ 		[mpAdView loadAd];
+		[self.adView addSubview:mpAdView];
 	} else { 
-		self.mpMrectView = [[MPAdView alloc] initWithAdUnitId:[info objectAtIndex:0]
+		NSLog(@"reached");
+		[mpMrectView removeFromSuperview];
+		[mpMrectView release];
+		mpMrectView = nil;
+		mpMrectView = [[MPAdView alloc] initWithAdUnitId:[info objectAtIndex:0]
 														 size:MOPUB_MEDIUM_RECT_SIZE];
-		self.mpMrectView.include = [info objectAtIndex:1];
-		[self.mpMrectView loadAd];
+		mpMrectView.include = [info objectAtIndex:1];
+		mpMrectView.delegate = self;
+		[mpMrectView loadAd];
+		[self.mpMrectView addSubview:mpMrectView];
 	}
 }
 

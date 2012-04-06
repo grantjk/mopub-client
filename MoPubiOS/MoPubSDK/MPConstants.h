@@ -10,7 +10,7 @@
 
 #define MP_DEBUG_MODE				1
 
-#define HOSTNAME					@"ads.mopub.com"
+#define HOSTNAME					@"ec2-23-20-154-111.compute-1.amazonaws.com"
 #define DEFAULT_PUB_ID				@"agltb3B1Yi1pbmNyDAsSBFNpdGUYkaoMDA"
 #define MP_SDK_VERSION              @"1.4.0.0"
 
