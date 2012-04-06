@@ -81,6 +81,8 @@ typedef enum
 	// Whether the ad view ignores autorefresh values sent down from the server. If YES,
 	// the ad view will never refresh once it has an ad.
 	BOOL _ignoresAutorefresh;
+	
+	NSString *include;
 }
 
 @property (nonatomic, assign) id<MPAdViewDelegate> delegate;
@@ -93,6 +95,7 @@ typedef enum
 @property (nonatomic, assign) NSUInteger locationPrecision;
 @property (nonatomic, assign) MPAdAnimationType animationType;
 @property (nonatomic, assign) BOOL ignoresAutorefresh;
+@property (nonatomic, retain) NSString *include;
 
 /*
  * Returns an MPAdView with the given ad unit ID.

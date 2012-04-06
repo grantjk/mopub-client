@@ -259,6 +259,7 @@ NSString * const kAdTypeMraid = @"mraid";
 	urlString = [urlString stringByAppendingString:[self scaleFactorQueryStringComponent]];
 	urlString = [urlString stringByAppendingString:[self timeZoneQueryStringComponent]];
 	urlString = [urlString stringByAppendingString:[self locationQueryStringComponent]];
+	urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"&include=%@", self.adView.include]];  
     
     if (NSClassFromString(@"MPMraidAdapter") != nil) {
         urlString = [urlString stringByAppendingString:@"&mr=1"];

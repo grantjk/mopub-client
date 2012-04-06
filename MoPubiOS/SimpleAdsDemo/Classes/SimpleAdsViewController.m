@@ -16,6 +16,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadCustom:)
+												 name:@"loadCustom" object:nil];
+	
 	// 320x50 size
 	mpAdView = [[MPAdView alloc] initWithAdUnitId:PUB_ID_320x50 size:MOPUB_BANNER_SIZE];
 	mpAdView.delegate = self;
@@ -44,6 +47,22 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[self refreshAd];
 	return YES;
+}
+
+- (void)loadCustom:(NSNotification *)notification {
+	NSArray *info = [[NSArray alloc] initWithArray:[notification object]];
+	if ([[info objectAtIndex:2] isEqualToString:@"320x50"]) {
+		self.mpAdView = [[MPAdView alloc] initWithAdUnitId:[info objectAtIndex:0]
+													  size:MOPUB_BANNER_SIZE];
+		self.mpAdView.include = [info objectAtIndex:1];
+		self.mpAdView.delegate = self;
+		[self.mpAdView loadAd];
+	} else { 
+		self.mpMrectView = [[MPAdView alloc] initWithAdUnitId:[info objectAtIndex:0]
+														 size:MOPUB_MEDIUM_RECT_SIZE];
+		self.mpMrectView.include = [info objectAtIndex:1];
+		[self.mpMrectView loadAd];
+	}
 }
 
 - (void)didReceiveMemoryWarning {
