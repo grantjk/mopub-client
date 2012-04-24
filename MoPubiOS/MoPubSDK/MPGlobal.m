@@ -113,7 +113,7 @@ NSString *MPHashedUDID()
 	return cachedIdentifier;
 }
 
-NSString *MPGenerateUDID()
+NSString *MPGenerateUDID(void)
 {
     NSString *identifier;
     NSString *identifierLabel;
