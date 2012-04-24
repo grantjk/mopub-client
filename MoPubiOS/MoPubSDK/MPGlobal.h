@@ -17,6 +17,7 @@ CGRect MPApplicationFrame(void);
 CGRect MPScreenBounds(void);
 CGFloat MPDeviceScaleFactor(void);
 NSString *MPHashedUDID(void);
+NSString *MPGenerateUDID(void);
 NSString *MPUserAgentString(void);
 NSDictionary *MPDictionaryFromQueryString(NSString *query);
 
